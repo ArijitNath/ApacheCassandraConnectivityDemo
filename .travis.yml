@@ -1,0 +1,20 @@
+sudo: required
+
+language: java
+jdk:
+    - openjdk8
+
+services:
+    - docker
+
+before_install:
+    - mvn clean
+    - docker pull openjdk:8-jdk-alpine
+
+script:
+    - mvn clean install -B
+    
+after_success:
+    - docker build -t arijitnath92/employeeanalyticslogin:latest .
+    - echo "$DOCKER_PASSWORD" | docker login  -u "$DOCKER_USERNAME" --password-stdin
+    - docker push arijitnath92/employeeanalyticslogin:latest
