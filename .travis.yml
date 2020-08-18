@@ -15,6 +15,6 @@ script:
     - mvn clean install -B
     
 after_success:
-    - docker build -t arijitnath92/employeeanalyticslogin:latest .
+    - docker build -t arijitnath92/apachecassandraconnectivitydemo:latest .
     - echo "$DOCKER_PASSWORD" | docker login  -u "$DOCKER_USERNAME" --password-stdin
-    - docker push arijitnath92/employeeanalyticslogin:latest
+    - docker push arijitnath92/apachecassandraconnectivitydemo:latest
